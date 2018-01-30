@@ -1,0 +1,132 @@
+-- неправильные долбления 
+select w.well_uin,
+a.vch_area_name,
+w.vch_well_num,
+s.num_slotting_top,
+s.num_slotting_bottom,
+s.num_slotting_bottom - s.num_slotting_top from
+tbl_slotting s,
+tbl_well w,
+tbl_area_dict a
+where
+s.well_uin = w.well_uin
+and
+w.area_id = a.area_id
+and
+s.num_core_final_yield is not null
+and
+ s.num_slotting_bottom - s.num_slotting_top <= 0
+ order by a.vch_area_name, w.vch_well_num
+
+-- очень длинные долбления
+select w.well_uin,
+a.vch_area_name,
+w.vch_well_num,
+s.num_slotting_top,
+s.num_slotting_bottom,
+s.num_slotting_bottom - s.num_slotting_top from
+tbl_slotting s,
+tbl_well w,
+tbl_area_dict a
+where
+s.well_uin = w.well_uin
+and
+w.area_id = a.area_id
+and
+s.num_core_final_yield is not null
+and
+ s.num_slotting_bottom - s.num_slotting_top > 5*(select avg(num_slotting_bottom - num_slotting_top) from tbl_slotting)
+
+-- керн глубже забоя
+select w.well_uin,
+a.vch_area_name,
+w.vch_well_num,
+s.num_slotting_top,
+s.num_slotting_bottom,
+w.num_true_depth,
+s.num_slotting_bottom - w.num_true_depth
+ from
+tbl_slotting s,
+tbl_well w,
+tbl_area_dict a
+where
+s.well_uin = w.well_uin
+and
+w.area_id = a.area_id
+and
+s.num_core_final_yield is not null
+and
+s.num_slotting_bottom - w.num_true_depth > 1
+
+-- долбления не в ящиках
+select w.well_uin,
+a.vch_area_name,
+w.vch_well_num,
+s.num_slotting_top,
+s.num_slotting_bottom
+ from
+tbl_slotting s,
+tbl_well w,
+tbl_area_dict a
+where
+s.well_uin = w.well_uin
+and
+w.area_id = a.area_id
+and
+s.num_core_final_yield is not null
+and
+(select count(*) from tbl_slotting_box sb where sb.slotting_uin = s.slotting_uin) = 0
+and s.num_core_final_yield > 0
+
+--слишком большие ящики
+select min(w.well_uin) well_uin, min(a.vch_area_name) vch_area_name, min(w.vch_well_num) vch_well_num,
+min(b.vch_box_number) vch_box_number, min(s.vch_slotting_number) vch_min_slotting_number,
+max(s.vch_slotting_number) vch_max_slotting_number,
+sum(s.num_core_final_yield)
+from tbl_box b, tbl_slotting_box sb,
+tbl_slotting s, tbl_well w, tbl_area_dict  a
+where s.slotting_uin = sb.slotting_uin
+and b.box_uin = sb.box_uin
+and w.well_uin = s.slotting_uin
+and w.area_id = a.area_id
+
+group by b.box_uin
+having sum(s.num_core_final_yield) > 10
+
+--слишком маленькие ящики
+select min(w.well_uin) well_uin, min(a.vch_area_name) vch_area_name, min(w.vch_well_num) vch_well_num,
+min(b.vch_box_number) vch_box_number, min(s.vch_slotting_number) vch_min_slotting_number,
+max(s.vch_slotting_number) vch_max_slotting_number,
+sum(s.num_core_final_yield)
+from tbl_box b, tbl_slotting_box sb,
+tbl_slotting s, tbl_well w, tbl_area_dict  a
+where s.slotting_uin = sb.slotting_uin
+and b.box_uin = sb.box_uin
+and w.well_uin = s.slotting_uin
+and w.area_id = a.area_id
+group by b.box_uin
+having sum(s.num_core_final_yield) < 1
+
+--слишком большие выходы
+select w.well_uin,
+a.vch_area_name,
+w.vch_well_num,
+s.num_slotting_top,
+s.num_slotting_bottom,
+s.num_slotting_bottom - s.num_slotting_top,
+s.num_core_final_yield from
+tbl_slotting s,
+tbl_well w,
+tbl_area_dict a
+where
+s.well_uin = w.well_uin
+and
+w.area_id = a.area_id
+and
+s.num_core_final_yield is not null
+and
+((s.num_core_final_yield > 50) or (s.num_core_final_yield > 3*(s.num_slotting_bottom - s.num_slotting_top)))
+and (s.num_slotting_bottom - s.num_slotting_top > 0)
+order by a.vch_area_name, w.vch_well_num
+
+

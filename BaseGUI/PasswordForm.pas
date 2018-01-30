@@ -1,0 +1,152 @@
+unit PasswordForm;
+
+interface
+
+
+
+uses
+  Classes, Forms,
+  StdCtrls,Graphics, Controls, ExtCtrls, Variants, ActnList, SysUtils,
+  ComCtrls, Windows;
+
+type
+  TfrmPassword = class(TForm)
+    edtUserName: TEdit;
+    lblUserName: TLabel;
+    lblPassword: TLabel;
+    btnOk: TButton;
+    btnCancel: TButton;
+    imgPassportIcon: TImage;
+    lblTitle: TLabel;
+    edtPassword: TEdit;
+    btnChangePassword: TButton;
+    actnList: TActionList;
+    actnEnter: TAction;
+    actnExit: TAction;
+    anmWait: TAnimate;
+    sbr: TStatusBar;
+    procedure edtUserNameKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure edtPasswordKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure actnEnterExecute(Sender: TObject);
+    procedure actnExitExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure edtPasswordKeyPress(Sender: TObject; var Key: Char);
+    procedure actnEnterUpdate(Sender: TObject);
+    procedure actnExitUpdate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    FError: boolean;
+    FUserName: string;
+    FPwd: string;
+    FFinished: boolean;
+    FStatus: string;
+    function  GetStatus: string;
+    procedure SetStatus(const Value: string);
+  private
+    property  Error: boolean read FError write FError;
+  public
+    property  UserName: string read FUserName;
+    property  Pwd: string read FPwd;
+    property  Finished: boolean read FFinished;
+    property  Status: string read GetStatus write SetStatus;
+  end;
+
+var
+  frmPassword: TfrmPassword;
+
+implementation
+
+uses Facade, BaseFacades, PersistentObjects;
+
+{$R *.DFM}
+
+procedure TfrmPassword.edtUserNameKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = 40 then edtPassword.SetFocus();
+end;
+
+procedure TfrmPassword.edtPasswordKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = 38 then edtUserName.SetFocus();
+end;
+
+procedure TfrmPassword.actnEnterExecute(Sender: TObject);
+begin
+  FFinished := false;
+  anmWait.Visible := true;
+  anmWait.Active := true;
+  anmWait.Update;
+  Status := 'Идет проверка...';
+
+  FUserName := edtUserName.Text;
+  FPwd := edtPassword.Text;
+  FFinished := True;
+  ModalResult := mrOk;
+end;
+
+procedure TfrmPassword.actnExitExecute(Sender: TObject);
+begin
+  TMainFacade.GetInstance.DBGates.UninitializeServer;
+  Close;
+  FError := false;
+end;
+
+procedure TfrmPassword.FormCreate(Sender: TObject);
+begin
+  imgPassportIcon.Picture.Icon:= Application.Icon;
+
+  {$IFOPT D+}
+  edtUserName.Text := '1190';
+  edtPassword.Text := 'bluebluesky';
+
+  {$ENDIF}
+
+  FError := false;
+end;
+
+procedure TfrmPassword.edtPasswordKeyPress(Sender: TObject; var Key: Char);
+begin
+  if ord(Key) = 13 then actnEnter.Execute;
+end;
+
+procedure TfrmPassword.actnEnterUpdate(Sender: TObject);
+begin
+  actnEnter.Enabled := not TMainFacade.GetInstance.DBGates.Autorized;
+end;
+
+procedure TfrmPassword.actnExitUpdate(Sender: TObject);
+begin
+  actnExit.Enabled := true;
+end;
+
+function TfrmPassword.GetStatus: string;
+begin
+  result := FStatus;
+end;
+
+procedure TfrmPassword.SetStatus(const Value: string);
+begin
+  FStatus := Value;
+  sbr.SimpleText := Value;
+  sbr.Hint := Value;
+end;
+
+procedure TfrmPassword.FormActivate(Sender: TObject);
+begin
+  sbr.SimpleText := Status;
+  sbr.Repaint
+end;
+
+procedure TfrmPassword.FormShow(Sender: TObject);
+begin
+  sbr.SimpleText := Status;
+  sbr.Repaint;
+end;
+
+end.
+
