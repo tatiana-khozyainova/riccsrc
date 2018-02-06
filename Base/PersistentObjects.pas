@@ -2550,7 +2550,6 @@ end;
 procedure TCommonServerDataSet.InternalPost;
 var iResult: integer;
     st: TSourceType;
-    vFields: variant;
     vTranFields, vTranValues: OleVariant;
 
   procedure UpdateData;
@@ -2602,9 +2601,9 @@ var iResult: integer;
 
 begin
   inherited;
+  iResult := -1;
   UpdateCursorPos;
   try
-    iResult := -1;
     st := GetSourceType(DataPostString);
     // если это было редактирование - пытаемся редактировать
     if State = dsEdit then

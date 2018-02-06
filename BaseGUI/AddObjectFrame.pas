@@ -20,9 +20,9 @@ type
     frmFilterDicts: TfrmFilter;
   private
     FName: string;
-    procedure SetName(const Value: string);
+    procedure SetObjectName(const Value: string);
   public
-    property    Name: string read FName write SetName;
+    property    ObjectName: string read FName write SetObjectName;
 
     procedure   Clear;
     procedure   Reload;
@@ -73,7 +73,7 @@ begin
   else MessageBox(0, 'Введите значение поля.', 'Ошибка', MB_OK + MB_ICONWARNING + MB_APPLMODAL);
 end;
 
-procedure TfrmAddObject.SetName(const Value: string);
+procedure TfrmAddObject.SetObjectName(const Value: string);
 begin
   if FName <> Value then
   begin

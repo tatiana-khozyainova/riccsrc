@@ -36,7 +36,6 @@ type
     FFileName: string;
     FFileSections: TFileSections;
     function GetSections: TFileSections;
-    function GetCount: integer;
     function GetSectionByName(const ASectionName: string): TFileSection;
   public
     // файл из которого грузим
@@ -78,13 +77,6 @@ begin
 end;
 
 
-function TSystemSettings.GetCount: integer;
-var i: integer;
-begin
-  result := 0;
-  for i := 0 to Sections.Count - 1 do
-    Result := Result + Sections.Items[i].SectionValues.Count;
-end;
 
 function TSystemSettings.GetSectionByName(
   const ASectionName: string): TFileSection;

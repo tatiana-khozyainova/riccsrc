@@ -45,7 +45,7 @@ end;
 function TThemeDataPoster.DeleteFromDB(AObject: TIDObject;
   ACollection: TIDObjects): integer;
 begin
-
+  Result := 0;
 end;
 
 function TThemeDataPoster.GetFromDB(AFilter: string;
@@ -85,7 +85,7 @@ end;
 function TThemeDataPoster.PostToDB(AObject: TIDObject;
   ACollection: TIDObjects): integer;
 begin
-
+  Result := 0;
 end;
 
 procedure TThemeDataPoster.SetAllEmployees(const Value: TEmployees);

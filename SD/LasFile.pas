@@ -707,7 +707,7 @@ function TLasFileContent.GetStringsInBlock: TStringsInBlock;
 const
   Numbers = '0123456789-';
 var
-    i,k:Integer;
+    i:Integer;
     NewString,BlockName:String;
     SIB:TStringInBlock;
 begin
@@ -813,7 +813,7 @@ end;
 
 procedure TLasFileContent.SaveFile2(const AFileName: string);
 var lst: TStringList;
-    i, j: integer;
+    i: integer;
     temp:string;
 begin
   lst := TStringList.Create;
@@ -1044,7 +1044,6 @@ end;
 
 function TLasFileContent.GetCurveList: string;
 var cb: TLasFileBlock;
-    r: TStringTableRow;
     i: integer;
 begin
    Result := '';
@@ -1185,7 +1184,7 @@ end;
 
 function TLasFileBlock.GetFieldValue(AFieldname: string): string;
 var
-  dotPos, spacePos, dbldotPos:Integer;
+  dotPos, dbldotPos:Integer;
   i:Integer;
   input: string;
 begin
@@ -1610,7 +1609,6 @@ end;
 
 function TStringInBlock.ConvertToFloat: Double;
 var
-  i:Integer;
   temp:string;
 begin
   temp:=Value;
@@ -1639,7 +1637,7 @@ end;
 
 function TStringInBlock.GetName: String;
   var
-  pos1,pos2,i:Integer;
+  pos1,i:Integer;
   temp:String;
 begin
   if ((FBlockName<>'~ASCII Log Data') and (FIsCommentString<>true) and (FName='')) then

@@ -51,7 +51,6 @@ end;
 
 procedure TfrmEditInfoWellBinding.FinishClick(Sender: TObject);
 var w: TWell;
-    o: TReasonChange;
 begin
   try
     w := EditingObject as TWell;

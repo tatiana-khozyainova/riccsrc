@@ -40,11 +40,9 @@ uses SDReport, Classes, BaseObjects, Well;
    private
      FColumns: OleVariant;
      FTotalDepthReached: Boolean;
-     HeaderRange: OleVariant;
      FQueryBuilder: TQueryTemplateBuilder;
      FXLHiddenWorksheet: OleVariant;
-     procedure CreateQueryTemplate;
-    function GetWell: TSimpleWell;
+     function GetWell: TSimpleWell;
    protected
      procedure InternalOpenTemplate; override;
      procedure PreProcessQueryBlock(AQueryBlock: OleVariant); override;
@@ -90,10 +88,6 @@ begin
   IsHorizontal := False;
 end;
 
-procedure TStandardSubdivisionReport.CreateQueryTemplate;
-begin
-
-end;
 
 destructor TStandardSubdivisionReport.Destroy;
 begin
@@ -158,8 +152,7 @@ end;
 
 procedure TStandardSubdivisionReport.PostProcessQueryBlock(
   AQueryBlock: OleVariant);
-var vRange, Cell1, Cell2, vSubRange: OleVariant;
-    i, iIndex: integer;
+var vRange, Cell1, Cell2: OleVariant;
 begin
   Cell1 := FXLWorksheet.Cells.Item[2, 2];
   Cell2 := FXLWorksheet.Cells.Item[6, CurrentColumn - 1];

@@ -51,8 +51,7 @@ begin
 end;
 
 procedure TfrmReportByWells.MakeList;
-var sFilter: string;
-    i: Integer;
+var i: Integer;
 begin
   // список параметров по скважине
   // 0 - идентификатор

@@ -402,7 +402,7 @@ end;
 
 function TParametersGroupByWellDataPoster.DeleteFromDB(AObject: TIDObject; ACollection: TIDObjects): integer; 
 begin
-
+  Result := 0;
 end;
 
 function TParametersGroupByWellDataPoster.GetFromDB(AFilter: string;

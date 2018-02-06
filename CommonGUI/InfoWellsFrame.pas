@@ -33,7 +33,6 @@ type
     procedure tvwWellsKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
   private
-    procedure   SetNodeBoldState(Node: TTreeNode; Value: Boolean);
     function    GetActiveWell: TWell;
   public
     property    ActiveWell: TWell read GetActiveWell;
@@ -79,18 +78,6 @@ begin
 end;
 
 procedure TfrmInfoWells.SetNodeBoldState(Node: TTreeNode; Value: Boolean);
-var TVItem: TTVItem;
-begin
-  if not Assigned(Node) then Exit;
-  with TVItem do
-  begin
-    mask := TVIF_STATE or TVIF_HANDLE;
-    hItem := Node.ItemId;
-    stateMask := TVIS_BOLD;
-    if Value then state := TVIS_BOLD else state := 0;
-    TreeView_SetItem(Node.Handle, TVItem);
-  end;
-end;
 
 procedure TfrmInfoWells.tvwWellsGetSelectedIndex(Sender: TObject;
   Node: TTreeNode);

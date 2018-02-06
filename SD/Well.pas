@@ -295,16 +295,13 @@ type
   private
     FDtDrillingStart: TDateTime;
     FDtDrillingFinish: TDateTime;
-    FLicenseZone: TIDObject;
     FOwnerOrganization: TOrganization;
     FWellBindings: TWellBindings;
     FAltitudes: TAltitudes;
     FLastModifyDate: TDateTime;
     FTargetDepth: double;
     FAge: TSimpleStraton;
-    FVchAge: string;
     FWellPositions: TWellPositions;
-    FReasonChangeID: integer;
     FInfoGroups: TInfoGroups;
     FWellDynamicParameters: TWellDynamicParametersSet;
     FNumberWell: string;
@@ -312,7 +309,6 @@ type
     FArea: TSimpleArea;
     FTargetCategory: TWellCategory;
 
-    procedure SetLicenseZone(const Value: TIDObject);
     function GetRealOwner: TOrganization;
     function GetWellBindings: TWellBindings;
     function GetAltitudes: TAltitudes;
@@ -426,8 +422,6 @@ type
     FSlottingPlacements: TSlottingPlacements;
     FFluidTypeByBalance: TFluidType;
     FAbandonReason: TAbandonReasonWell;
-    FWellPositions: TWellPositions;
-    FDtLiquidation: TDateTime;
     FTargetCost: double;
     FIstFinances: TIDObjects;
     FCoords: TWellCoords;
@@ -1620,6 +1614,7 @@ end;
 
 function TSimpleWell.GetRealOwner: TOrganization;
 begin
+  Result := nil;
   (* if Assigned(WellPosition) and Assigned(WellPosition.LicZone) then
     Result := (WellPosition.LicZone as TSimpleLicenseZone).OwnerOrganization
   else
@@ -1656,11 +1651,6 @@ begin
   if Assigned (Area) then
     Result := NumberWell + ' - ' + Area.List(AListOption)
   else Result := NumberWell;
-end;
-
-procedure TSimpleWell.SetLicenseZone(const Value: TIDObject);
-begin
-  FLicenseZone := Value;
 end;
 
 procedure TSimpleWells.SortByWellNumAndArea;
@@ -2174,7 +2164,7 @@ end;
 
 function TWellLicenseZones.GetItems(Index: Integer): TWellLicenseZone;
 begin
-
+  Result := inherited Items[index] as TWellLicenseZone;
 end;
 
 { TWellField }

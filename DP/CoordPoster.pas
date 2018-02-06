@@ -54,7 +54,7 @@ end;
 function TWellCoordDataPoster.DeleteFromDB(AObject: TIDObject;
   ACollection: TIDObjects): integer;
 begin
-  inherited DeleteFromDB(AObject, ACollection);
+  Result := inherited DeleteFromDB(AObject, ACollection);
 end;
 
 function TWellCoordDataPoster.GetFromDB(AFilter: string;

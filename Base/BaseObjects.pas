@@ -569,8 +569,7 @@ end;
 
 function TIdObject.StrToCorrect(AStr: string; NeedsLowerCase,
   NeedsDelSpace: Boolean): string;
-var i: Integer;
-    str1, str2: string;
+var str1, str2: string;
 begin
   Result := '';
 
@@ -622,8 +621,6 @@ end;
 function TIdObject.Update(ACollection: TIDObjects = nil): integer;
 var dp: TDataPoster;
 begin
-  Result := 0;
-
   if Assigned(ACollection) then
     dp := ACollection.Poster
   else

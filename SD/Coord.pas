@@ -92,40 +92,34 @@ end;
 
 function TWellCoord.X_grad: Integer;
 begin
-  if Assigned (Self) then
-    Result := Trunc(coordX) div 3600;
+  Result := Trunc(coordX) div 3600;
 end;
 
 function TWellCoord.X_min: Integer;
 begin
-  if Assigned (Self) then
-    Result := (Trunc(coordX) - X_grad * 3600) div 60;
+  Result := (Trunc(coordX) - X_grad * 3600) div 60;
 end;
 
 function TWellCoord.X_sec: Double;
 begin
-  if Assigned (Self) then
-    Result := coordX - X_grad * 3600 - X_min * 60;
+  Result := coordX - X_grad * 3600 - X_min * 60;
 end;
 
 //67 20 50.311
 
 function TWellCoord.Y_grad: Integer;
 begin
-  if Assigned (Self) then
-    Result := Trunc(coordY) div 3600;
+  Result := Trunc(coordY) div 3600;
 end;
 
 function TWellCoord.Y_min: Integer;
 begin
-  if Assigned (Self) then
-    Result := (Trunc(coordY) - Y_grad * 3600) div 60;
+  Result := (Trunc(coordY) - Y_grad * 3600) div 60;
 end;
 
 function TWellCoord.Y_sec: Double;
 begin
-  if Assigned (Self) then
-    Result := coordY - Y_grad * 3600 - Y_min * 60;
+  Result := coordY - Y_grad * 3600 - Y_min * 60;
 end;
 
 { TSourceCoords }

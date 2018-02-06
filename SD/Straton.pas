@@ -32,7 +32,6 @@ type
   private
     FRange: Integer;
     FTaxonomyType: TTaxonomyType;
-    function GetTaxonomyType: TTaxonomyType;
   protected
     procedure AssignTo (Dest: TPersistent); override;
   public
@@ -145,12 +144,8 @@ type
     FNotAffirmed: Integer;
     FBase9Volume: string;
     FTop9Volume: string;
-    FBaseChildren: TStratons;
-    FTopChildren: TStratons;
-    FError: Boolean;
     FLastError: string;
 
-    function GetTaxonomyType: TTaxonomyType;
     function GetBaseChildren: TStratons;
     function GetTopChildren: TStratons;
 
@@ -271,26 +266,12 @@ begin
   ID := -1;
 end;
 
-function TStratTaxonomy.GetTaxonomyType: TTaxonomyType;
-begin
-  if Assigned(TaxonomyType) then
-    Result := TaxonomyType
-  else
-    Result := nil;
-end;
 
 { TSimpleStraton }
 
 procedure TSimpleStraton.AssignTo(Dest: TPersistent);
-var ss: TSimpleStraton;
 begin
   inherited;
-
-  //ss := Dest as TSimpleStraton;
-  //ss.Definition := Definition;
-  //ss.DecoratedIndex := DecoratedIndex;
-  //ss.Color := Color;
-  //ss.Taxonomy := Taxonomy;
 
   (Dest as TSimpleStraton).Definition := Definition;
   (Dest as TSimpleStraton).DecoratedIndex := DecoratedIndex;
@@ -410,7 +391,6 @@ end;
 { TStraton }
 
 procedure TStraton.AssignTo(Dest: TPersistent);
-var s: TStraton;
 begin
   inherited;
   (Dest as TStraton).Scheme := Scheme;
@@ -474,13 +454,6 @@ begin
   Result := Straton.Taxonomy;
 end;
 
-function TStraton.GetTaxonomyType: TTaxonomyType;
-begin
-  if Assigned(Taxonomy) then
-    Result := Taxonomy.TaxonomyType
-  else
-    Result := nil;
-end;
 
 function TStraton.GetTopStraton: TStraton;
 var iID: integer;

@@ -178,7 +178,7 @@ end;
 function TAbandonReasonWellDataPoster.DeleteFromDB(AObject: TIDObject;
   ACollection: TIDObjects): integer;
 begin
-
+  Result := 0;
 end;
 
 function TAbandonReasonWellDataPoster.GetFromDB(AFilter: string;

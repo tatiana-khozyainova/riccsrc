@@ -681,8 +681,7 @@ begin
 end;
 
 function TSlottings.GetBoxCount(UseGenSection: Boolean): Integer;
-var i: integer;
-    sQuery: string;
+var sQuery: string;
 begin
 
   sQuery := 'select distinct b.vch_box_number from tbl_box b, tbl_slotting_box sb ' +

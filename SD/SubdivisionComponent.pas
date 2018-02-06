@@ -296,6 +296,7 @@ begin
   //  1. Перебираем компоненты коллекции
   for i:=0 to Count-1 do
   begin
+    BlockSubdivisionComponents := nil;  
     bFound := false;
     //  2. Для каждого - смотрим блок
     for j := 0 to FBSCList.Count - 1 do
@@ -383,7 +384,7 @@ end;
 
 function TSubdivision.Update(ACollection: TIDObjects): integer;
 begin
-  inherited Update(ACollection);
+  Result := inherited Update(ACollection);
   SubdivisionComponents.Update(nil);
 end;
 

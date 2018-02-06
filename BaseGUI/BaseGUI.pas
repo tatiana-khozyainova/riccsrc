@@ -583,7 +583,11 @@ function THintManager.Add(AControl: TControl; AAdditional: TObject;
 var hC: THintedControl;
 begin
   hC := ItemsByName[AName];
-  if Assigned(hC) then exit;
+  if Assigned(hC) then
+  begin
+    Result := hC; 
+    exit;
+  end;
 
 
   hC := THintedControl.Create;

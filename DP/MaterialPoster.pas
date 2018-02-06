@@ -701,7 +701,7 @@ end;
 function TObjectBindMaterialTypeDataPoster.DeleteFromDB(AObject: TIDObject;
   ACollection: TIDObjects): integer;
 begin
-  inherited DeleteFromDB(AObject, ACollection);
+  Result := inherited DeleteFromDB(AObject, ACollection);
 end;
 
 function TObjectBindMaterialTypeDataPoster.GetFromDB(AFilter: string;

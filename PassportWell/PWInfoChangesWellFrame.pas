@@ -115,7 +115,7 @@ end;
 
 function TInfoChangesWell.GetParentCollection: TIDObjects;
 begin
-
+  Result := nil;
 end;
 
 function TInfoChangesWell.GetWell: TWell;
@@ -130,7 +130,6 @@ begin
 end;
 
 procedure TInfoChangesWell.Save;
-var o: TReasonChange;
 begin
   inherited;
   if Assigned (Well) then

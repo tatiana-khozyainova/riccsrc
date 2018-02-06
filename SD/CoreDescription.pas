@@ -551,9 +551,7 @@ begin
       FFiles.Reload('SLOTTING_UIN = ' + IntToStr(Collection.Owner.Collection.Owner.ID));
   end;
 
-  if FFiles.Count > 0 then
-    Result := FFiles
-  else FreeAndNil(FFiles);
+  Result := FFiles;
 end;
 
 function TDescription.GetLithologies: TLithologiesDescr;
@@ -781,18 +779,8 @@ begin
 end;
 
 function TDictionaryWord.Update(ACollection: TIDObjects = nil): integer;
-var w : TDictionaryWord;
 begin
-//  try
-//    w := Self;
-//   FAllWords.Add(w);
-//  except
-
-//  end;
-
   Result := inherited Update;
-
-//  if Assigned(Registrator) then Registrator.Update(Self, Self.Collection.Owner, ukUpdate);
 end;
 
 { TListWords }

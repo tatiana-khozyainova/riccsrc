@@ -45,8 +45,6 @@ type
     FStatus: string;
     function  GetStatus: string;
     procedure SetStatus(const Value: string);
-  private
-    property  Error: boolean read FError write FError;
   public
     property  UserName: string read FUserName;
     property  Pwd: string read FPwd;

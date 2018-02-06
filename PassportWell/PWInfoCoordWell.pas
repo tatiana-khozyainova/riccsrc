@@ -88,7 +88,6 @@ begin
 end;
 
 procedure TfrmInfoCoordWell.FillControls(ABaseObject: TIDObject);
-var tempX: Double;
 begin
   inherited;
 
@@ -119,7 +118,7 @@ end;
 
 function TfrmInfoCoordWell.GetParentCollection: TIDObjects;
 begin
-
+  Result := nil;
 end;
 
 function TfrmInfoCoordWell.GetValueCoord(i, j: Integer; s: string): string;
@@ -156,7 +155,6 @@ begin
 end;
 
 procedure TfrmInfoCoordWell.Save(AObject: TIDObject = nil);
-var o : TWellCoord;
 begin
   inherited;
 
@@ -165,7 +163,7 @@ begin
     // 3-Южно-Шапкинская (-ое)
 
     if Not Assigned (Coord) then
-      o := Well.Coords.Add as TWellCoord;
+      Well.Coords.Add;
 
     Coord.coordX := 3600 * StrToInt(GetValueCoord(1, 2, edtGradX.Text)) +
                     60 * StrToInt(GetValueCoord(4, 5, edtGradX.Text)) +

@@ -53,8 +53,6 @@ type
     FStructureFundTypes: TStructureFundTypes;
     FDocumentTypes: TDocumentTypes;
 
-    FAllNirStates: TNIRStates;
-    FAllSeismWorkTypes: TSeismWorkTypes;
     
     FFilter: string;
     FVersionFilter: string;

@@ -68,15 +68,11 @@ type
     FAllStratigraphicSchemes: TStratigraphicSchemes;
     FAllStratotyRegions: TStratotypeRegions;
     FAllSimpleStratons: TSimpleStratons;
-    FAllChild: TStratons;
-    FAllStratTaxonomies: TStratTaxonomies;
-
+    
     procedure SetAllSimplStratons(const Value: TSimpleStratons);
     procedure SetAllStratigraphicSchemes(const Value: TStratigraphicSchemes);
     procedure SetAllStratotyRegions(const Value: TStratotypeRegions);
-    procedure SetAllChild(const Value: TStratons);
-    procedure SetAllStratTaxonomies(const Value: TStratTaxonomies);
-
+    
   public
     property AllStratigraphicSchemes: TStratigraphicSchemes read FAllStratigraphicSchemes write SetAllStratigraphicSchemes;
     property AllStratotypeRegions: TStratotypeRegions read FAllStratotyRegions write SetAllStratotyRegions;
@@ -369,12 +365,6 @@ begin
   a.ID := ds.FieldByName('STRATON_REGION_ID').AsInteger;
 end;
 
-procedure TStratonDataPoster.SetAllChild(const Value: TStratons);
-begin
-  if FAllChild <> Value then
-    FAllChild := Value;
-end;
-
 procedure TStratonDataPoster.SetAllSimplStratons(
   const Value: TSimpleStratons);
 begin
@@ -480,11 +470,6 @@ begin
 end;
 
 
-procedure TStratonDataPoster.SetAllStratTaxonomies(
-  const Value: TStratTaxonomies);
-begin
-  FAllStratTaxonomies := Value;
-end;
 
 { TStratigraphicSchemeDataPoster }
 

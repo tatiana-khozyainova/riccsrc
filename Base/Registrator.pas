@@ -838,13 +838,7 @@ procedure TRegisteredIdObjects.MakeList(AListItems: TListItems; NeedsRegistering
   NeedsClearing: boolean);
 var i: integer;
     o: TListItem;
-    lv: TListView;
 begin
-  //lv := AListItems.Owner as TListView;
-  //for i := 0 to lv.Columns.Count - 1 do
-  //  lv.Columns[i].Width := 50;
-
-
   AListItems.BeginUpdate;
   if (NeedsClearing) then AListItems.Clear;
 
