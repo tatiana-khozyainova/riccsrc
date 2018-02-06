@@ -77,7 +77,6 @@ begin
     tvwWells.Items.Item[i].ImageIndex := 0;
 end;
 
-procedure TfrmInfoWells.SetNodeBoldState(Node: TTreeNode; Value: Boolean);
 
 procedure TfrmInfoWells.tvwWellsGetSelectedIndex(Sender: TObject;
   Node: TTreeNode);

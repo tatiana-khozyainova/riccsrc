@@ -587,7 +587,7 @@ end;
 procedure TfrmInfoWellParametrs.actnAddHistoryItemExecute(Sender: TObject);
 var p: TWellDynamicParameters;
 begin
-  if not Assigned(frmSelectVersion) then frmSelectVersion := TfrmSelectVersion.Create(Self);
+  frmSelectVersion := TfrmSelectVersion.Create(Self);
 
   if frmSelectVersion.ShowModal = mrOk then
   begin
@@ -602,6 +602,8 @@ begin
     ActiveParameters := p;
     actnStartEdit.Execute;
   end;
+
+  FreeAndNil(frmSelectVersion);
 end;
 
 function TfrmInfoWellParametrs.InternalCheck: boolean;
