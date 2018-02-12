@@ -337,10 +337,12 @@ begin
 
     if frmEditorWell.ShowModal = mrOK then
     begin
-      ReloadWells(Sender);
       Node := frmInfoObject.GetNodeByID(iID);
       if Assigned(Node) then
+      begin
+        Node.Text := frmEditorWell.EditingObject.List(); 
         Node.Selected := true;
+      end;
     end;
 
     frmEditorWell.Free;

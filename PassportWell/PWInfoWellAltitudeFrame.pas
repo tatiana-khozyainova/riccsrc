@@ -179,18 +179,8 @@ procedure TfrmAltitudesWell.grdAltitudesSetEditText(Sender: TObject;
 begin
   if Assigned (well) then
   case Cell.col of
-    0 : if Assigned (Well.Altitudes.Items[Cell.Row].AltitudeType) then Well.Altitudes.Items[Cell.Row].AltitudeType.Name := Value
-        else
-        begin
-          Well.Altitudes.Items[Cell.Row].AltitudeType := grdAltitudes.Columns.Columns[0].PickList.Objects[Cell.Row] as TAltitudeType;
-          Well.Altitudes.Items[Cell.Row].AltitudeType.Name := Value;
-        end;
-    1 : if Assigned (Well.Altitudes.Items[Cell.Row].MeasureSystemType) then Well.Altitudes.Items[Cell.Row].MeasureSystemType.Name := Value
-        else
-        begin
-          Well.Altitudes.Items[Cell.Row].MeasureSystemType := grdAltitudes.Columns.Columns[1].PickList.Objects[Cell.Row] as TMeasureSystemType;
-          Well.Altitudes.Items[Cell.Row].MeasureSystemType.Name := Value;
-        end;
+    0 : Well.Altitudes.Items[Cell.Row].AltitudeType := grdAltitudes.Columns.Columns[0].PickList.Objects[Cell.Row] as TAltitudeType;
+    1 : Well.Altitudes.Items[Cell.Row].MeasureSystemType := grdAltitudes.Columns.Columns[1].PickList.Objects[Cell.Row] as TMeasureSystemType;
     2 : if Assigned (Well.Altitudes.Items[Cell.Row]) then Well.Altitudes.Items[Cell.Row].Value := StrToFloat(Value);
   end
 end;
