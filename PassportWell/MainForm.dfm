@@ -1,6 +1,6 @@
 object frmMain: TfrmMain
-  Left = 206
-  Top = 194
+  Left = 84
+  Top = 129
   Width = 1274
   Height = 636
   Align = alClient
@@ -132,7 +132,7 @@ object frmMain: TfrmMain
   end
   object sbr: TStatusBar
     Left = 0
-    Top = 558
+    Top = 559
     Width = 1258
     Height = 19
     Panels = <>
@@ -141,7 +141,7 @@ object frmMain: TfrmMain
     Left = 0
     Top = 29
     Width = 273
-    Height = 529
+    Height = 530
     Align = alLeft
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -152,13 +152,13 @@ object frmMain: TfrmMain
     TabOrder = 2
     inherited pnlLeft: TPanel
       Width = 273
-      Height = 529
+      Height = 530
       inherited lswSearch: TListView
         Width = 269
-        Height = 285
+        Height = 286
       end
       inherited pnlButtons: TPanel
-        Top = 381
+        Top = 382
         Width = 269
         inherited prg: TProgressBar
           Width = 269
@@ -176,32 +176,32 @@ object frmMain: TfrmMain
     Left = 273
     Top = 29
     Width = 985
-    Height = 529
+    Height = 530
     Align = alClient
     TabOrder = 3
     inherited Splitter1: TSplitter
       Left = 982
-      Height = 529
+      Height = 530
     end
     inherited frmInfoProperties: TfrmInfoProperties
       Left = 728
-      Height = 529
+      Height = 530
       inherited lstInfoPropertiesWell: TListView
-        Height = 529
+        Height = 530
       end
     end
     inherited frmInfoWells: TfrmInfoWells
       Width = 728
-      Height = 529
+      Height = 530
       inherited tbr: TToolBar
-        Height = 529
+        Height = 530
       end
       inherited Panel1: TPanel
         Width = 703
-        Height = 529
+        Height = 530
         inherited tvwWells: TTreeView
           Width = 703
-          Height = 529
+          Height = 530
           OnDblClick = frmInfoWellstvwWellsDblClick
         end
       end

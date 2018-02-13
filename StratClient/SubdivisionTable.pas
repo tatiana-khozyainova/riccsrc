@@ -663,7 +663,7 @@ var i, j: integer;
 begin
   for i := SECOND_STRATON_COLUMN_INDEX + 1 to TectonicBlockRow.Count - 1 do
   begin
-    sBlock := AnsiUpperCase(TectonicBlockRow[i].AsString);
+    sBlock := trim(AnsiUpperCase(TectonicBlockRow[i].AsString));
     if (sBlock <> '') then
     begin
       bFound := false;
@@ -710,8 +710,13 @@ begin
       end;
 
       if not bFound then
+      begin
         TableErrors.AddError(ekTectonicBlockNotFound, TECTONIC_BLOCK_ROW_INDEX, i, TectonicBlockRow[i], true);
-    end;
+        TectonicBlockRow[i].Data := IDObjectSearches.Add(i, TECTONIC_BLOCK_ROW_INDEX, ATectonicBlocks.ItemsByID[NO_TECTONIC_BLOCK_ID], mtExactWithCompletion);        
+      end;
+    end
+    else
+      TectonicBlockRow[i].Data := IDObjectSearches.Add(i, TECTONIC_BLOCK_ROW_INDEX, ATectonicBlocks.ItemsByID[NO_TECTONIC_BLOCK_ID], mtExactWithCompletion);
   end;
 end;
 

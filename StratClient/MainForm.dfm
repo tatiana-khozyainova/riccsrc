@@ -194,6 +194,7 @@ object frmMain: TfrmMain
       Caption = #1056#1072#1079#1073#1080#1074#1082#1080
       object N7: TMenuItem
         Action = frmWells1.actnImportSubs
+        OnClick = N7Click
       end
       object actnViewSubdivisions1: TMenuItem
         Action = actnViewSubdivisions
