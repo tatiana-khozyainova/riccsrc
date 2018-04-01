@@ -1998,10 +1998,11 @@ begin
   inherited;
   ReportQueryTemplate := 'Select WELL_UIN, VCH_AREA_NAME, VCH_WELL_NUM, vch_Category_name, ' +
                          'num_box_transfered_count, NUM_BOX_FINAL_COUNT - num_box_transfered_count, vch_box_comment, VCH_PREV_PLACEMENT, ' +
-                         'NUM_TRANSFER_YEAR, NUM_DRILLING_START_YEAR, NUM_DRILLING_FINISH_YEAR, ' +
+                         'NUM_TRANSFER_YEAR, NUM_REBOXING_YEAR, NUM_DRILLING_START_YEAR, NUM_DRILLING_FINISH_YEAR, ' +
                          'NUM_CORE_FINAL_YIELD, NUM_BOX_FINAL_COUNT, VCH_REAL_PLACEMENT, ' +
                          'VCH_MAIN_DISCTRICT, VCH_CORE_TRANSFER_TYPE_NAME, VCH_PICTURE_EXISTS, NULL, ' +
-                         'VCH_COORD_EXISTS, VCH_FUND_NAME, VCH_ORG_FULL_NAME, VCH_LICENSE_NUMBER ' +
+                         'VCH_COORD_EXISTS, VCH_FUND_NAME, VCH_ORG_FULL_NAME, VCH_LICENSE_ZONE_FULL_NAME, ' +
+                         'VCH_REGION_FULL_NAME,    vch_Core_Desc_Exists, vch_carotage_exists, vch_Las_Exists, vch_Sub_Exists ' +
                          'from VW_CORE_TRANSFER_TABLE ' +
                          'ORDER BY 2, 3';
 
@@ -2021,6 +2022,7 @@ end;
 procedure TCoreTransferFullReport.InternalOpenTemplate;
 begin
   inherited;
+
   FXLWorkBook := FExcel.Workbooks.add(ExtractFileDir(Application.ExeName)+'\CurrentCoreTable.xltx');
   FXLWorksheet := FExcel.ActiveWorkbook.ActiveSheet;
 end;
@@ -2031,7 +2033,7 @@ begin
   FirstColIndex := 1;
   LastRowIndex := 2;
   FirstRowIndex := 2;
-  LastColIndex := 22;
+  LastColIndex := 28;
 end;
 
 procedure TCoreTransferFullReport.PreProcessQueryBlock(
